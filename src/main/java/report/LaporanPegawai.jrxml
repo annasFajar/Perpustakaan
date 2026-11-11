@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+"http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="LaporanPegawai"
+              pageWidth="595" pageHeight="842"
+              columnWidth="535" leftMargin="30" rightMargin="30"
+              topMargin="20" bottomMargin="20">
+
+    <queryString>
+        <![CDATA[SELECT ID_Pegawai, Nama_Pegawai, Email, Telepon, Jabatan, Tanggal_Bergabung FROM pegawai ORDER BY ID_Pegawai]]>
+    </queryString>
+
+    <field name="ID_Pegawai"        class="java.lang.String"/>
+    <field name="Nama_Pegawai"      class="java.lang.String"/>
+    <field name="Email"             class="java.lang.String"/>
+    <field name="Telepon"           class="java.lang.String"/>
+    <field name="Jabatan"           class="java.lang.String"/>
+    <field name="Tanggal_Bergabung" class="java.sql.Date"/>
+
+    <title>
+        <band height="120">
+            <staticText>
+                <reportElement x="0" y="5" width="535" height="20"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOKO SPARE PARTS PRO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="25" width="535" height="14"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Jl. Veteran No. 1, Jakarta Pusat  |  Telp. 081545826471]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="45" width="535" height="1"/>
+                <graphicElement><pen lineWidth="2.0"/></graphicElement>
+            </line>
+            <staticText>
+                <reportElement x="0" y="60" width="535" height="18"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[DATA PEGAWAI]]></text>
+            </staticText>
+            <line>
+                <reportElement x="150" y="80" width="235" height="1"/>
+            </line>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="25">
+            <staticText>
+                <reportElement x="0"   y="0" width="25"  height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="25"  y="0" width="70"  height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID PEGAWAI]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="95"  y="0" width="100" height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NAMA PEGAWAI]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="195" y="0" width="110" height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[EMAIL]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="305" y="0" width="80"  height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TELEPON]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="385" y="0" width="75"  height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[JABATAN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="460" y="0" width="75"  height="25" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TGL BERGABUNG]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0"   y="0" width="25"  height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="25"  y="0" width="70"  height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{ID_Pegawai}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true" isStretchWithOverflow="true">
+                <reportElement x="95"  y="0" width="100" height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Pegawai}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true" isStretchWithOverflow="true">
+                <reportElement x="195" y="0" width="110" height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Email}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="305" y="0" width="80"  height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Telepon}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="385" y="0" width="75"  height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Jabatan}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true" pattern="dd/MM/yyyy">
+                <reportElement x="460" y="0" width="75"  height="20"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Tanggal_Bergabung}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <summary>
+        <band height="80">
+            <textField pattern="dd MMMM yyyy">
+                <reportElement x="300" y="10" width="235" height="15"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Jakarta, " + new java.text.SimpleDateFormat("EEEE dd MMMM yyyy", new java.util.Locale("id","ID")).format(new java.util.Date())]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="300" y="25" width="235" height="15"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10"/>
+                </textElement>
+                <text><![CDATA[Mengetahui,]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="65" width="235" height="15"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[(________________________)]]></text>
+            </staticText>
+        </band>
+    </summary>
+
+</jasperReport>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+"http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="LaporanStokKritis"
+              pageWidth="595" pageHeight="842"
+              columnWidth="535" leftMargin="30" rightMargin="30"
+              topMargin="20" bottomMargin="20">
+
+    <!-- QUERY -->
+    <queryString>
+        <![CDATA[
+        SELECT
+            b.Kode_Barang,
+            b.Nama_Barang,
+            b.Merk,
+            b.Satuan,
+            k.Nama_Kategori,
+            s.Nama_Supplier,
+            b.Stok,
+            b.Stok_Minimum,
+            b.Harga_Beli,
+            b.Harga_Jual,
+            (b.Stok_Minimum - b.Stok) AS Kekurangan
+        FROM barang b
+        LEFT JOIN kategori k  ON b.Kategori_ID_Kategori = k.ID_Kategori
+        LEFT JOIN supplier s  ON b.Supplier_ID_Supplier = s.ID_Supplier
+        WHERE b.Stok <= b.Stok_Minimum
+        ORDER BY b.Stok ASC
+        ]]>
+    </queryString>
+
+    <!-- FIELDS -->
+    <field name="Kode_Barang"    class="java.lang.String"/>
+    <field name="Nama_Barang"    class="java.lang.String"/>
+    <field name="Merk"           class="java.lang.String"/>
+    <field name="Satuan"         class="java.lang.String"/>
+    <field name="Nama_Kategori"  class="java.lang.String"/>
+    <field name="Nama_Supplier"  class="java.lang.String"/>
+    <field name="Stok"           class="java.lang.Integer"/>
+    <field name="Stok_Minimum"   class="java.lang.Integer"/>
+    <field name="Harga_Beli"     class="java.lang.Double"/>
+    <field name="Harga_Jual"     class="java.lang.Double"/>
+    <field name="Kekurangan"     class="java.lang.Integer"/>
+
+    <!-- VARIABLES -->
+    <variable name="JmlBarang" class="java.lang.Integer" calculation="Count">
+        <variableExpression><![CDATA[$F{Kode_Barang}]]></variableExpression>
+    </variable>
+
+    <!-- ═══════════ TITLE ═══════════ -->
+    <title>
+        <band height="130">
+            <staticText>
+                <reportElement x="0" y="5" width="535" height="22"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOKO SPARE PARTS PRO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="28" width="535" height="13"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Jl. Veteran No. 1, Jakarta Pusat  |  Telp. 081545826471]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="47" width="535" height="1"/>
+                <graphicElement><pen lineWidth="2.0"/></graphicElement>
+            </line>
+            <staticText>
+                <reportElement x="0" y="54" width="535" height="18"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="13" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LAPORAN STOK KRITIS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="72" width="535" height="13"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[(Barang dengan stok di bawah atau sama dengan stok minimum)]]></text>
+            </staticText>
+            <line>
+                <reportElement x="150" y="90" width="235" height="1"/>
+            </line>
+
+            <!-- Tanggal cetak -->
+            <staticText>
+                <reportElement x="0" y="98" width="90" height="13"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[Tanggal Cetak]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="98" width="10" height="13"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="100" y="98" width="200" height="13"/>
+                <textElement><font fontName="Times New Roman" size="9" isBold="true"/></textElement>
+                <textFieldExpression>
+                    <![CDATA[new java.text.SimpleDateFormat("EEEE, dd MMMM yyyy",
+                        new java.util.Locale("id","ID")).format(new java.util.Date())]]>
+                </textFieldExpression>
+            </textField>
+
+            <line>
+                <reportElement x="0" y="116" width="535" height="1"/>
+                <graphicElement><pen lineWidth="0.5"/></graphicElement>
+            </line>
+        </band>
+    </title>
+
+    <!-- ═══════════ COLUMN HEADER ═══════════ -->
+    <columnHeader>
+        <band height="24">
+            <staticText>
+                <reportElement x="0"   y="0" width="18"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="18"  y="0" width="55"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[KODE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="73"  y="0" width="100" height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NAMA BARANG]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="173" y="0" width="60"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[KATEGORI]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="233" y="0" width="65"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[SUPPLIER]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="298" y="0" width="35"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[STOK]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="333" y="0" width="40"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[STOK MIN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="373" y="0" width="40"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[KURANG]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="413" y="0" width="60"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[HARGA BELI]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="473" y="0" width="62"  height="24" backcolor="#CC3333" mode="Opaque" forecolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <text><![CDATA[HARGA JUAL]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- ═══════════ DETAIL ═══════════ -->
+    <detail>
+        <band height="16">
+            <!-- Warna bergantian: putih dan merah muda -->
+            <textField>
+                <reportElement x="0"   y="0" width="18"  height="16"
+                    backcolor="#FFFFFF" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="18"  y="0" width="55"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Kode_Barang}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="73"  y="0" width="100" height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Barang} + " (" + ($F{Merk} == null ? "-" : $F{Merk}) + ")"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="173" y="0" width="60"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Kategori}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="233" y="0" width="65"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Supplier}]]></textFieldExpression>
+            </textField>
+
+            <!-- Stok — merah jika 0 -->
+            <textField>
+                <reportElement x="298" y="0" width="35"  height="16"
+                    forecolor="#CC0000" mode="Opaque" backcolor="#FFFFFF"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Stok}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="333" y="0" width="40"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Stok_Minimum}]]></textFieldExpression>
+            </textField>
+
+            <!-- Kekurangan — selalu positif -->
+            <textField>
+                <reportElement x="373" y="0" width="40"  height="16" backcolor="#FFF0F0" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7" isBold="true"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$F{Kekurangan} <= 0 ? "0" : String.valueOf($F{Kekurangan})]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="413" y="0" width="60"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA["Rp " + String.format("%,.0f", $F{Harga_Beli})]]>
+                </textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="473" y="0" width="62"  height="16"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="7"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA["Rp " + String.format("%,.0f", $F{Harga_Jual})]]>
+                </textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- ═══════════ SUMMARY ═══════════ -->
+    <summary>
+        <band height="130">
+            <line>
+                <reportElement x="0" y="5" width="535" height="1"/>
+                <graphicElement><pen lineWidth="1.5"/></graphicElement>
+            </line>
+
+            <!-- Total barang kritis -->
+            <staticText>
+                <reportElement x="0" y="12" width="298" height="18" backcolor="#FFEEEE" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total Barang Kritis   ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="298" y="12" width="237" height="18" backcolor="#FFEEEE" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA[$V{JmlBarang} + " jenis barang"]]>
+                </textFieldExpression>
+            </textField>
+
+            <line>
+                <reportElement x="0" y="35" width="535" height="1"/>
+            </line>
+
+            <!-- Catatan -->
+            <staticText>
+                <reportElement x="0" y="40" width="535" height="12"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="8" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[* Segera lakukan pemesanan kepada supplier untuk barang-barang di atas.]]></text>
+            </staticText>
+
+            <!-- Garis TTD -->
+            <line>
+                <reportElement x="0" y="57" width="535" height="1"/>
+            </line>
+
+            <!-- Tanggal kanan -->
+            <textField>
+                <reportElement x="300" y="62" width="235" height="13"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA["Jakarta, " + new java.text.SimpleDateFormat(
+                        "EEEE, dd MMMM yyyy", new java.util.Locale("id","ID")
+                    ).format(new java.util.Date())]]>
+                </textFieldExpression>
+            </textField>
+
+            <!-- Mengetahui (kiri) -->
+            <staticText>
+                <reportElement x="30" y="75" width="200" height="13"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Mengetahui,]]></text>
+            </staticText>
+
+            <!-- Petugas Laporan (kanan) -->
+            <staticText>
+                <reportElement x="300" y="75" width="235" height="13"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Petugas Laporan,]]></text>
+            </staticText>
+
+            <!-- Garis tanda tangan kiri -->
+            <staticText>
+                <reportElement x="30" y="105" width="200" height="12"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[(________________________)]]></text>
+            </staticText>
+
+            <!-- Garis tanda tangan kanan -->
+            <staticText>
+                <reportElement x="300" y="105" width="235" height="12"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[(________________________)]]></text>
+            </staticText>
+
+        </band>
+    </summary>
+
+</jasperReport>

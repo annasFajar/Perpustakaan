@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+"http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="LaporanTransaksi"
+              pageWidth="595" pageHeight="842"
+              columnWidth="535" leftMargin="30" rightMargin="30"
+              topMargin="20" bottomMargin="20">
+
+    <!-- ═══════════════════════════════════════
+         PARAMETER
+    ═══════════════════════════════════════ -->
+    <parameter name="ID_Penjualan" class="java.lang.String"/>
+
+    <!-- ═══════════════════════════════════════
+         QUERY
+    ═══════════════════════════════════════ -->
+    <queryString>
+        <![CDATA[
+        SELECT
+            p.ID_Penjualan,
+            p.No_Nota,
+            p.Tanggal_Penjualan,
+            p.Nama_Pembeli,
+            p.Total,
+            p.Bayar,
+            p.Kembalian,
+            b.Nama_Barang,
+            dp.Qty,
+            dp.Harga_Jual,
+            dp.Diskon,
+            dp.Subtotal
+        FROM penjualan p
+        JOIN detail_penjualan dp ON p.ID_Penjualan = dp.ID_Penjualan
+        JOIN barang b ON dp.ID_Barang = b.ID_Barang
+        WHERE p.ID_Penjualan = $P{ID_Penjualan}
+        ORDER BY b.Nama_Barang
+        ]]>
+    </queryString>
+
+    <!-- ═══════════════════════════════════════
+         FIELDS
+    ═══════════════════════════════════════ -->
+    <field name="ID_Penjualan"       class="java.lang.String"/>
+    <field name="No_Nota"            class="java.lang.String"/>
+    <field name="Tanggal_Penjualan"  class="java.sql.Date"/>
+    <field name="Nama_Pembeli"       class="java.lang.String"/>
+    <field name="Total"              class="java.lang.Double"/>
+    <field name="Bayar"              class="java.lang.Double"/>
+    <field name="Kembalian"          class="java.lang.Double"/>
+    <field name="Nama_Barang"        class="java.lang.String"/>
+    <field name="Qty"                class="java.lang.Integer"/>
+    <field name="Harga_Jual"         class="java.lang.Double"/>
+    <field name="Diskon"             class="java.lang.Double"/>
+    <field name="Subtotal"           class="java.lang.Double"/>
+
+    <!-- ═══════════════════════════════════════
+         VARIABLES
+    ═══════════════════════════════════════ -->
+    <variable name="TotalKeseluruhan" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{Subtotal}]]></variableExpression>
+    </variable>
+
+    <!-- ═══════════════════════════════════════
+         TITLE  (Header Nota)
+    ═══════════════════════════════════════ -->
+    <title>
+        <band height="155">
+
+            <!-- Nama Toko -->
+            <staticText>
+                <reportElement x="0" y="5" width="535" height="22"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOKO SPARE PARTS PRO]]></text>
+            </staticText>
+
+            <!-- Alamat -->
+            <staticText>
+                <reportElement x="0" y="28" width="535" height="13"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Jl. Contoh No. 1, Kota Anda  |  Telp. (021) 0000000]]></text>
+            </staticText>
+
+            <!-- Garis tebal -->
+            <line>
+                <reportElement x="0" y="48" width="535" height="1"/>
+                <graphicElement><pen lineWidth="2.0"/></graphicElement>
+            </line>
+
+            <!-- Judul NOTA PENJUALAN -->
+            <staticText>
+                <reportElement x="0" y="55" width="535" height="18"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="13" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NOTA PENJUALAN]]></text>
+            </staticText>
+
+            <!-- Garis tipis bawah judul -->
+            <line>
+                <reportElement x="150" y="76" width="235" height="1"/>
+            </line>
+
+            <!-- No. Nota label -->
+            <staticText>
+                <reportElement x="0" y="90" width="90" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[No. Nota]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="90" width="10" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="100" y="90" width="150" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$F{No_Nota}]]></textFieldExpression>
+            </textField>
+
+            <!-- Tanggal label -->
+            <staticText>
+                <reportElement x="0" y="106" width="90" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[Tanggal]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="106" width="10" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true" pattern="EEEE, dd MMMM yyyy">
+                <reportElement x="100" y="106" width="200" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <textFieldExpression>
+                    <![CDATA[new java.text.SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id","ID")).format($F{Tanggal_Penjualan})]]>
+                </textFieldExpression>
+            </textField>
+
+            <!-- Pembeli label -->
+            <staticText>
+                <reportElement x="0" y="122" width="90" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[Pembeli]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="122" width="10" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="100" y="122" width="200" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9"/></textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Pembeli}]]></textFieldExpression>
+            </textField>
+
+            <!-- ID Transaksi (kanan atas) -->
+            <staticText>
+                <reportElement x="350" y="90" width="90" height="14"/>
+                <textElement textAlignment="Right"><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[ID Transaksi]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="440" y="90" width="10" height="14"/>
+                <textElement textAlignment="Center"><font fontName="Times New Roman" size="9"/></textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="450" y="90" width="85" height="14"/>
+                <textElement><font fontName="Times New Roman" size="9" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$F{ID_Penjualan}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </title>
+
+    <!-- ═══════════════════════════════════════
+         COLUMN HEADER  (Header Tabel Item)
+    ═══════════════════════════════════════ -->
+    <columnHeader>
+        <band height="22">
+            <staticText>
+                <reportElement x="0"   y="0" width="20"  height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20"  y="0" width="175" height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NAMA BARANG]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="195" y="0" width="45"  height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[QTY]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="240" y="0" width="100" height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[HARGA SATUAN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="0" width="80"  height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[DISKON]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="420" y="0" width="115" height="22" backcolor="#CCCCCC" mode="Opaque"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[SUBTOTAL]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- ═══════════════════════════════════════
+         DETAIL  (Baris per Item)
+    ═══════════════════════════════════════ -->
+    <detail>
+        <band height="18">
+            <!-- No urut -->
+            <textField>
+                <reportElement x="0"   y="0" width="20"  height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <!-- Nama Barang -->
+            <textField isBlankWhenNull="true" isStretchWithOverflow="true">
+                <reportElement x="20"  y="0" width="175" height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Nama_Barang}]]></textFieldExpression>
+            </textField>
+            <!-- Qty -->
+            <textField isBlankWhenNull="true">
+                <reportElement x="195" y="0" width="45"  height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Qty}]]></textFieldExpression>
+            </textField>
+            <!-- Harga Satuan -->
+            <textField isBlankWhenNull="true" pattern="#,##0">
+                <reportElement x="240" y="0" width="100" height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Rp " + String.format("%,.0f", $F{Harga_Jual})]]></textFieldExpression>
+            </textField>
+            <!-- Diskon -->
+            <textField isBlankWhenNull="true">
+                <reportElement x="340" y="0" width="80"  height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{Diskon} > 0 ? "Rp " + String.format("%,.0f", $F{Diskon}) : "-"]]></textFieldExpression>
+            </textField>
+            <!-- Subtotal -->
+            <textField isBlankWhenNull="true">
+                <reportElement x="420" y="0" width="115" height="18"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Rp " + String.format("%,.0f", $F{Subtotal})]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- ═══════════════════════════════════════
+         SUMMARY  (Total, Bayar, Kembalian, TTD)
+    ═══════════════════════════════════════ -->
+    <summary>
+        <band height="160">
+
+            <!-- Garis atas summary -->
+            <line>
+                <reportElement x="0" y="5" width="535" height="1"/>
+                <graphicElement><pen lineWidth="1.5"/></graphicElement>
+            </line>
+
+            <!-- TOTAL label -->
+            <staticText>
+                <reportElement x="0" y="12" width="340" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOTAL BELANJA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="12" width="15" height="16"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="355" y="12" width="180" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Rp " + String.format("%,.0f", $F{Total})]]></textFieldExpression>
+            </textField>
+
+            <!-- BAYAR label -->
+            <staticText>
+                <reportElement x="0" y="30" width="340" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10"/>
+                </textElement>
+                <text><![CDATA[UANG BAYAR]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="30" width="15" height="16"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="10"/>
+                </textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="355" y="30" width="180" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Rp " + String.format("%,.0f", $F{Bayar})]]></textFieldExpression>
+            </textField>
+
+            <!-- Garis tipis sebelum kembalian -->
+            <line>
+                <reportElement x="355" y="48" width="180" height="1"/>
+            </line>
+
+            <!-- KEMBALIAN label -->
+            <staticText>
+                <reportElement x="0" y="50" width="340" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[KEMBALIAN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="50" width="15" height="16"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[:]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="355" y="50" width="180" height="16"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Rp " + String.format("%,.0f", $F{Kembalian})]]></textFieldExpression>
+            </textField>
+
+            <!-- Garis bawah kembalian -->
+            <line>
+                <reportElement x="355" y="68" width="180" height="1"/>
+                <graphicElement><pen lineWidth="1.5"/></graphicElement>
+            </line>
+
+            <!-- Ucapan terima kasih -->
+            <staticText>
+                <reportElement x="0" y="80" width="535" height="14"/>
+                <textElement textAlignment="Center">
+                    <font fontName="Times New Roman" size="9" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Terima kasih telah berbelanja di Toko Spare Parts Pro!]]></text>
+            </staticText>
+
+            <!-- Garis sebelum TTD -->
+            <line>
+                <reportElement x="0" y="96" width="535" height="1"/>
+            </line>
+
+            <!-- Tanggal TTD (kanan) -->
+            <textField>
+                <reportElement x="300" y="102" width="235" height="14"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <textFieldExpression>
+                    <![CDATA["Jakarta, " + new java.text.SimpleDateFormat("EEEE, dd MMMM yyyy", new java.util.Locale("id","ID")).format(new java.util.Date())]]>
+                </textFieldExpression>
+            </textField>
+
+            <!-- Label TTD -->
+            <staticText>
+                <reportElement x="300" y="116" width="235" height="13"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9"/>
+                </textElement>
+                <text><![CDATA[Kasir,]]></text>
+            </staticText>
+
+            <!-- Tanda tangan -->
+            <staticText>
+                <reportElement x="300" y="145" width="235" height="14"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Times New Roman" size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[(________________________)]]></text>
+            </staticText>
+
+        </band>
+    </summary>
+
+</jasperReport>
