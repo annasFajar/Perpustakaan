@@ -115,7 +115,7 @@ repaint();
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 255));
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel1.setText("LOGIN2");
+        jLabel1.setText("LOGIN3");
 
         jLabel2.setText("Username");
 
