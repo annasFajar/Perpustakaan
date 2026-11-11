@@ -133,7 +133,7 @@
                           <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
@@ -168,7 +168,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="24" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Anas"/>
+                    <Property name="text" type="java.lang.String" value="LOGIN"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">

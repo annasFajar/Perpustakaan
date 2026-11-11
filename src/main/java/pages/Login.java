@@ -115,7 +115,7 @@ repaint();
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 255));
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 24)); // NOI18N
-        jLabel1.setText("Anas");
+        jLabel1.setText("LOGIN");
 
         jLabel2.setText("Username");
 
@@ -146,7 +146,7 @@ repaint();
                         .addComponent(jLabel1)))
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 102, Short.MAX_VALUE)
+                .addGap(0, 104, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(91, 91, 91))
         );
