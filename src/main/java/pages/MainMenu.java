@@ -29,15 +29,16 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
-        
         setLocationRelativeTo(null);
-        
-//        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        showPage(new Dashboard());   // hanya MEMANGGIL method
+    }
+    
+        private void showPage(javax.swing.JPanel page) {
         container.removeAll();
-        container.add(new Dashboard());
-        container.repaint();
+        container.add(page, java.awt.BorderLayout.CENTER); // langsung, ikut melebar
         container.revalidate();
+        container.repaint();
     }
 
     /**
@@ -995,7 +996,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(navbarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(divNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
         );
         navbarLayout.setVerticalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1434,38 +1435,23 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_masterBarangMouseExited
 
     private void supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierMouseClicked
-        container.removeAll();
-        container.add(new Supplier());
-        container.repaint();
-        container.revalidate();
+        showPage(new Supplier());
     }//GEN-LAST:event_supplierMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-        container.removeAll();
-        container.add(new Dashboard());
-        container.repaint();
-        container.revalidate();
+        showPage(new Dashboard());
     }//GEN-LAST:event_dashboardMouseClicked
 
     private void masterBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterBarangMouseClicked
-        container.removeAll();
-        container.add(new NavMasterBarang());
-        container.repaint();
-        container.revalidate();
+        showPage(new NavMasterBarang());
     }//GEN-LAST:event_masterBarangMouseClicked
 
     private void pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pelangganMouseClicked
-        container.removeAll();
-        container.add(new Pegawai());
-        container.repaint();
-        container.revalidate();
+        showPage(new Pegawai());
     }//GEN-LAST:event_pelangganMouseClicked
 
     private void penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penjualanMouseClicked
-        container.removeAll();
-        container.add(new Penjualan());
-        container.repaint();
-        container.revalidate();
+        showPage(new Penjualan());
     }//GEN-LAST:event_penjualanMouseClicked
 
     private void laporanPegawaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanPegawaiMouseEntered
@@ -1483,17 +1469,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_laporanPegawaiMouseExited
 
     private void laporanPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanPegawaiMouseClicked
-        container.removeAll();
-        container.add(new LaporanPegawai());
-        container.repaint();
-        container.revalidate();
+        showPage(new LaporanPegawai());
     }//GEN-LAST:event_laporanPegawaiMouseClicked
 
     private void pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pembelianMouseClicked
-        container.removeAll();
-        container.add(new Pembelian());
-        container.repaint();
-        container.revalidate();
+        showPage(new Pembelian());
     }//GEN-LAST:event_pembelianMouseClicked
 
     private void laporanBulananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanBulananMouseClicked

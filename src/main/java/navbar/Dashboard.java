@@ -23,6 +23,7 @@ public class Dashboard extends javax.swing.JPanel {
     public Dashboard() {
         initComponents();
         loadDashboard();
+        buildResponsiveLayout();   
         conn = koneksi.getConnection();
     }
 
@@ -537,6 +538,64 @@ public class Dashboard extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Gagal load dashboard: " + e.getMessage());
         }
     }
+    
+    private void buildResponsiveLayout() {
+    java.awt.Dimension zero = new java.awt.Dimension(0, 0);
+    java.awt.Dimension big = new java.awt.Dimension(Short.MAX_VALUE, Short.MAX_VALUE);
+
+    // Lepas batas ukuran tetap
+    setMinimumSize(zero);
+    setMaximumSize(big);
+    layout.setMinimumSize(zero);
+    layout.setMaximumSize(big);
+    mainContain.setMinimumSize(zero);
+    mainContain.setMaximumSize(big);
+    mainContain.setPreferredSize(null);
+
+    // Susun ulang
+    layout.removeAll();
+    layout.setLayout(new java.awt.BorderLayout());
+    layout.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+    mainContain.removeAll();
+    mainContain.setLayout(new java.awt.BorderLayout(0, 15));
+    mainContain.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+    // Baris atas: 4 kartu, lebar dibagi rata
+    javax.swing.JPanel cards = new javax.swing.JPanel(new java.awt.GridLayout(1, 4, 15, 0));
+    cards.setOpaque(false);
+    cards.setPreferredSize(new java.awt.Dimension(0, 100));
+    for (javax.swing.JPanel p : new javax.swing.JPanel[]{jPanel3, jPanel4, jPanel5, jPanel6}) {
+        p.setMinimumSize(zero);
+        p.setMaximumSize(big);
+        cards.add(p);
+    }
+
+    // Baris bawah: 2 tabel berdampingan
+    javax.swing.JPanel tables = new javax.swing.JPanel(new java.awt.GridLayout(1, 2, 15, 0));
+    tables.setOpaque(false);
+
+    javax.swing.JPanel left = new javax.swing.JPanel(new java.awt.BorderLayout(0, 5));
+    left.setOpaque(false);
+    left.add(jLabel16, java.awt.BorderLayout.NORTH);
+    left.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+    javax.swing.JPanel right = new javax.swing.JPanel(new java.awt.BorderLayout(0, 5));
+    right.setOpaque(false);
+    right.add(jLabel18, java.awt.BorderLayout.NORTH);
+    right.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+    tables.add(left);
+    tables.add(right);
+
+    jTable2.setFillsViewportHeight(true);
+    jTable3.setFillsViewportHeight(true);
+
+    mainContain.add(cards, java.awt.BorderLayout.NORTH);
+    mainContain.add(tables, java.awt.BorderLayout.CENTER);
+
+    layout.add(mainContain, java.awt.BorderLayout.CENTER);
+}
 
 // Format angka ke "4,7jt" / "850rb"
     private String formatJuta(double angka) {

@@ -1298,7 +1298,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="divNavbar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="528" max="32767" attributes="0"/>
+                          <EmptySpace pref="525" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
