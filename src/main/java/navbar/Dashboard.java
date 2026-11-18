@@ -254,7 +254,7 @@ public class Dashboard extends javax.swing.JPanel {
         jLabel15.setText("Peminjam");
 
         jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        jLabel17.setText("18");
+        jLabel17.setText("8");
 
         jLabel19.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         jLabel19.setText("Siswa, guru");
