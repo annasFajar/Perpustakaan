@@ -206,7 +206,7 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel3.setMinimumSize(new java.awt.Dimension(124, 90));
 
         jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel5.setText("TOTAL BARANG");
+        jLabel5.setText("Total judul");
 
         jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel6.setText("221");
@@ -215,7 +215,7 @@ public class Dashboard extends javax.swing.JPanel {
         jLabel11.setText("12");
 
         jLabel13.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel13.setText("Kategori");
+        jLabel13.setText("Eksamplar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -251,16 +251,16 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel4.setMinimumSize(new java.awt.Dimension(155, 90));
 
         jLabel15.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel15.setText("Total Transaksi");
+        jLabel15.setText("Peminjam");
 
         jLabel17.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel17.setText("18");
 
         jLabel19.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel19.setText("12");
+        jLabel19.setText("Siswa, guru");
 
         jLabel21.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel21.setText("Kategori");
+        jLabel21.setText("& staf");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -296,7 +296,7 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel5.setMinimumSize(new java.awt.Dimension(127, 90));
 
         jLabel23.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel23.setText("Total Omzet");
+        jLabel23.setText("Sedang dipinjam");
 
         jLabel25.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel25.setText("Rp");
@@ -305,10 +305,10 @@ public class Dashboard extends javax.swing.JPanel {
         jLabel26.setText("12");
 
         jLabel27.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel27.setText("Kategori");
+        jLabel27.setText("Terlambat");
 
         jLabel32.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
-        jLabel32.setText("4,7");
+        jLabel32.setText("3");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -349,13 +349,13 @@ public class Dashboard extends javax.swing.JPanel {
         jPanel6.setMinimumSize(new java.awt.Dimension(134, 90));
 
         jLabel28.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel28.setText("STOK KRITIS");
+        jLabel28.setText("Perlu tindakan");
 
         jLabel29.setFont(new java.awt.Font("Baskerville Old Face", 0, 36)); // NOI18N
         jLabel29.setText("6");
 
         jLabel30.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
-        jLabel30.setText("Perlu restok !");
+        jLabel30.setText("Buku rusak/hilang");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -367,7 +367,7 @@ public class Dashboard extends javax.swing.JPanel {
                     .addComponent(jLabel28)
                     .addComponent(jLabel29)
                     .addComponent(jLabel30))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,10 +382,10 @@ public class Dashboard extends javax.swing.JPanel {
         );
 
         jLabel16.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel16.setText("Total Penjualan");
+        jLabel16.setText("Peminjaman terbaru");
 
         jLabel18.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
-        jLabel18.setText("Status stok spare part");
+        jLabel18.setText("Buku perlu tindakan");
 
         javax.swing.GroupLayout mainContainLayout = new javax.swing.GroupLayout(mainContain);
         mainContain.setLayout(mainContainLayout);
@@ -401,7 +401,7 @@ public class Dashboard extends javax.swing.JPanel {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainContainLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(mainContainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainContainLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

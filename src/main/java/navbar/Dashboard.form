@@ -234,7 +234,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="jLabel16" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" pref="155" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -429,7 +429,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="TOTAL BARANG"/>
+                    <Property name="text" type="java.lang.String" value="Total judul"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
@@ -453,7 +453,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Kategori"/>
+                    <Property name="text" type="java.lang.String" value="Eksamplar"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -512,7 +512,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Total Transaksi"/>
+                    <Property name="text" type="java.lang.String" value="Peminjam"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
@@ -528,7 +528,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="12"/>
+                    <Property name="text" type="java.lang.String" value="Siswa, guru"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel21">
@@ -536,7 +536,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Kategori"/>
+                    <Property name="text" type="java.lang.String" value="&amp; staf"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -602,7 +602,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Total Omzet"/>
+                    <Property name="text" type="java.lang.String" value="Sedang dipinjam"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel25">
@@ -626,7 +626,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Kategori"/>
+                    <Property name="text" type="java.lang.String" value="Terlambat"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel32">
@@ -634,7 +634,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="36" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="4,7"/>
+                    <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -662,7 +662,7 @@
                               <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -686,7 +686,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="STOK KRITIS"/>
+                    <Property name="text" type="java.lang.String" value="Perlu tindakan"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel29">
@@ -702,7 +702,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Baskerville Old Face" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Perlu restok !"/>
+                    <Property name="text" type="java.lang.String" value="Buku rusak/hilang"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -712,7 +712,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Baskerville Old Face" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Total Penjualan"/>
+                <Property name="text" type="java.lang.String" value="Peminjaman terbaru"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
@@ -720,7 +720,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Baskerville Old Face" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Status stok spare part"/>
+                <Property name="text" type="java.lang.String" value="Buku perlu tindakan"/>
               </Properties>
             </Component>
           </SubComponents>
